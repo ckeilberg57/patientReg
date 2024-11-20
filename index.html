@@ -86,7 +86,7 @@
         }
 
         .result-box.welcome {
-            width: 6in;
+            width: 8in;
             height: 4in;
         }
 
@@ -99,27 +99,35 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 80px;
-            height: 80px;
-            background-color: #ddd;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             position: relative;
             margin-bottom: 10px;
         }
 
+        .icon-container.red {
+            background-color: red;
+        }
+
+        .icon-container.green {
+            background-color: green;
+        }
+
         .icon-container::before {
             content: "";
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background-color: white;
             border-radius: 50%;
             position: absolute;
         }
 
         .icon {
-            font-size: 30px;
+            font-size: 40px;
             position: relative;
             z-index: 1;
+            color: white;
         }
 
         .icon.red {
@@ -146,13 +154,13 @@
     <div class="result-box welcome">Welcome, Chris Demo</div>
     <div style="display: flex; justify-content: space-between; gap: 20px;">
         <div class="result-box red">
-            <div class="icon-container">
+            <div class="icon-container red">
                 <div class="icon red">❌</div>
             </div>
             I'm not Chris Demo
         </div>
         <div class="result-box green">
-            <div class="icon-container">
+            <div class="icon-container green">
                 <div class="icon green">✔️</div>
             </div>
             Continue
