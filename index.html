@@ -6,6 +6,7 @@
     <title>Patient App Example</title>
     <link rel="apple-touch-icon" href="images/patientAppIcon.png">
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -17,21 +18,31 @@
             background-size: cover;
         }
 
-        .scanner-container, .result-container {
+        button {
+            padding: 20px 40px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #0eb3c7;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0a94a6;
+        }
+
+        .scanner-container {
             display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
-
-        .scanner-container {
-            width: 100%;
-            max-width: 800px;
-            height: 600px;
-            background-color: #000;
             position: relative;
+            width: 80vw;
+            height: 60vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
             overflow: hidden;
-            border: 5px solid #ddd;
         }
 
         .scanner-camera {
@@ -42,39 +53,38 @@
         }
 
         .scanner-line {
-            width: 100%;
-            height: 4px;
-            background-color: red;
             position: absolute;
-            top: 0;
-            animation: scanning 2s infinite;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: red;
+            animation: scan 2s infinite;
         }
 
-        @keyframes scanning {
-            0% { top: 0; }
-            100% { top: 100%; }
-        }
-
-        #scanButton {
-            background-color: #007BFF;
-            color: white;
-            font-size: 20px;
-            padding: 20px 40px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        @keyframes scan {
+            0% {
+                top: 0;
+            }
+            50% {
+                top: 50%;
+            }
+            100% {
+                top: 100%;
+            }
         }
 
         .result-container {
-            text-align: center;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .result-box {
             margin: 10px;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             font-size: 20px;
             font-weight: bold;
@@ -84,7 +94,6 @@
             justify-content: center;
             background-color: white;
             color: black;
-            border: 2px solid #ddd;
         }
 
         .result-box.welcome {
@@ -92,11 +101,12 @@
             height: 4in;
         }
 
-        .result-box.red, .result-box.green, .result-box.language {
+        .result-box.language {
             width: 3in;
             height: 4in;
         }
 
+        /* Icon Circle Styles */
         .icon-container {
             display: flex;
             justify-content: center;
@@ -108,20 +118,20 @@
             margin-bottom: 10px;
         }
 
-        .icon-container.red {
-            background-color: red;
+        .icon-container.blue {
+            background-color: blue;
         }
 
         .icon-container.green {
             background-color: green;
         }
 
-        .icon-container.blue {
-            background-color: blue;
-        }
-
         .icon-container.yellow {
             background-color: #FFD479;
+        }
+
+        .icon-container.red {
+            background-color: red;
         }
 
         .icon-container::before {
@@ -139,20 +149,20 @@
             z-index: 1;
         }
 
-        .icon.red {
-            color: red;
+        .icon.blue {
+            color: blue;
         }
 
         .icon.green {
             color: green;
         }
 
-        .icon.blue {
-            color: blue;
-        }
-
         .icon.yellow {
             color: #FFD479;
+        }
+
+        .icon.red {
+            color: red;
         }
     </style>
 </head>
@@ -188,7 +198,7 @@
 <div class="result-container" id="languageSelectionContainer" style="display: none;">
     <div class="result-box welcome">Please choose your language / Por favor elige tu idioma</div>
     <div style="display: flex; justify-content: space-between; gap: 20px;">
-        <div class="result-box language" style="color: blue;">
+        <div class="result-box language" id="englishButton" style="color: blue;">
             <div class="icon-container blue">
                 <div class="icon blue">🇺🇸</div>
             </div>
@@ -215,6 +225,17 @@
     const resultContainer = document.getElementById('resultContainer');
     const languageSelectionContainer = document.getElementById('languageSelectionContainer');
     const mainContainer = document.getElementById('mainContainer');
+    const englishButton = document.getElementById('englishButton');
+
+    // Function to generate a random 32-character alphanumeric string
+    function generateRandomID() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let randomID = '';
+        for (let i = 0; i < 32; i++) {
+            randomID += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return randomID;
+    }
 
     scanButton.addEventListener('click', () => {
         mainContainer.style.display = 'none';
@@ -231,6 +252,12 @@
     continueButton.addEventListener('click', () => {
         resultContainer.style.display = 'none';
         languageSelectionContainer.style.display = 'flex';
+    });
+
+    englishButton.addEventListener('click', () => {
+        const randomID = generateRandomID();
+        const url = `https://pexipdemo.com/webapp/m/hcppexipdemo.byoc.usw2.pure.cloud_16504393338_T001_0_${randomID}/step-by-step?name=Chris%20Demo&role=guest`;
+        window.location.href = url;
     });
 </script>
 
