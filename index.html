@@ -82,7 +82,7 @@
         }
 
         .result-box {
-            margin: 10px;
+            margin: 10px 0;
             padding: 20px;
             border-radius: 8px;
             text-align: center;
@@ -101,9 +101,23 @@
             height: 4in;
         }
 
-        .result-box.language {
-            width: 3in;
+        .action-box {
+            width: calc(50% - 10px);
             height: 4in;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-box:hover {
+            background-color: #f0f0f0;
+        }
+
+        .action-box.red .icon-container {
+            background-color: red;
+        }
+
+        .action-box.green .icon-container {
+            background-color: green;
         }
 
         /* Icon Circle Styles */
@@ -116,22 +130,6 @@
             border-radius: 50%;
             position: relative;
             margin-bottom: 10px;
-        }
-
-        .icon-container.blue {
-            background-color: blue;
-        }
-
-        .icon-container.green {
-            background-color: green;
-        }
-
-        .icon-container.yellow {
-            background-color: #FFD479;
-        }
-
-        .icon-container.red {
-            background-color: red;
         }
 
         .icon-container::before {
@@ -149,20 +147,12 @@
             z-index: 1;
         }
 
-        .icon.blue {
-            color: blue;
+        .icon.red {
+            color: red;
         }
 
         .icon.green {
             color: green;
-        }
-
-        .icon.yellow {
-            color: #FFD479;
-        }
-
-        .icon.red {
-            color: red;
         }
     </style>
 </head>
@@ -179,15 +169,15 @@
 
 <div class="result-container" id="resultContainer">
     <div class="result-box welcome">Welcome, Chris Demo</div>
-    <div style="display: flex; justify-content: space-between; gap: 20px;">
-        <div class="result-box red">
-            <div class="icon-container red">
+    <div style="display: flex; justify-content: space-between; gap: 20px; width: 8in;">
+        <div class="result-box action-box red" id="notChrisDemoBox">
+            <div class="icon-container">
                 <div class="icon red">❌</div>
             </div>
             I'm not Chris Demo
         </div>
-        <div class="result-box green">
-            <div class="icon-container green">
+        <div class="result-box action-box green" id="continueBox">
+            <div class="icon-container">
                 <div class="icon green">✔️</div>
             </div>
             Continue
@@ -225,6 +215,8 @@
     const resultContainer = document.getElementById('resultContainer');
     const languageSelectionContainer = document.getElementById('languageSelectionContainer');
     const mainContainer = document.getElementById('mainContainer');
+    const notChrisDemoBox = document.getElementById('notChrisDemoBox');
+    const continueBox = document.getElementById('continueBox');
     const englishButton = document.getElementById('englishButton');
 
     // Function to generate a random 32-character alphanumeric string
@@ -248,8 +240,12 @@
         }, 3000); // 3-second delay simulating scanning
     });
 
-    const continueButton = document.querySelector('.result-box.green');
-    continueButton.addEventListener('click', () => {
+    notChrisDemoBox.addEventListener('click', () => {
+        resultContainer.style.display = 'none';
+        mainContainer.style.display = 'flex';
+    });
+
+    continueBox.addEventListener('click', () => {
         resultContainer.style.display = 'none';
         languageSelectionContainer.style.display = 'flex';
     });
