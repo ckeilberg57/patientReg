@@ -194,7 +194,7 @@
             </div>
             English
         </div>
-        <div class="result-box language" style="color: green;">
+        <div class="result-box language" id="spanishButton" style="color: green;">
             <div class="icon-container green">
                 <div class="icon green">🇲🇽</div>
             </div>
@@ -218,6 +218,7 @@
     const notChrisDemoBox = document.getElementById('notChrisDemoBox');
     const continueBox = document.getElementById('continueBox');
     const englishButton = document.getElementById('englishButton');
+    const spanishButton = document.getElementByID('spanishButton');
 
     // Function to generate a random 32-character alphanumeric string
     function generateRandomID() {
@@ -253,6 +254,11 @@
     englishButton.addEventListener('click', () => {
         const randomID = generateRandomID();
         const url = `https://pexipdemo.com/webapp/?name=Chris%20Demo&conference=hcppexipdemo.byoc.usw2.pure.cloud_16504393338_T200_0_${randomID}&role=guest&callType=video&join=1`;
+        window.location.href = url;
+    });
+    spanishButton.addEventListener('click', () => {
+        const randomID = generateRandomID();
+        const url = `https://pexipdemo.com/webapp/?name=Chris%20Demo&conference=hcppexipdemo.byoc.usw2.pure.cloud_16504393338_T201_0_${randomID}&role=guest&callType=video&join=1`;
         window.location.href = url;
     });
 </script>
