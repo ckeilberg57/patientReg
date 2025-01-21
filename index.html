@@ -32,6 +32,21 @@
             background-color: #0a94a6;
         }
 
+        #patientFormButton {
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #0eb3c7;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #patientFormButton:hover {
+            background-color: #0a94a6;
+        }
+
         .scanner-container {
             display: none;
             flex-direction: column;
@@ -207,6 +222,9 @@
             Other
         </div>
     </div>
+    <div class="result-box">
+        <button id="patientFormButton" style="margin-top: 20px;">Access the Patient Registration Form</button>
+    </div>
 </div>
 
 <script>
@@ -219,6 +237,11 @@
     const continueBox = document.getElementById('continueBox');
     const englishButton = document.getElementById('englishButton');
     const spanishButton = document.getElementById('spanishButton');
+    const patientFormButton = document.getElementById('patientFormButton');
+
+    patientFormButton.addEventListener('click', () => {
+        window.open('https://example.com', '_blank');
+    });
 
     // Function to generate a random 32-character alphanumeric string
     function generateRandomID() {
