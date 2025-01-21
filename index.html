@@ -203,6 +203,9 @@
 <div class="result-container" id="languageSelectionContainer" style="display: none;">
     <div class="result-box welcome">Please choose your language / Por favor elige tu idioma</div>
     <div style="display: flex; justify-content: space-between; gap: 20px;">
+    <div class="result-box">
+        <button id="patientFormButton" style="margin-top: 20px;">Access the Patient Registration Form</button>
+    </div>
         <div class="result-box language" id="englishButton" style="color: blue; cursor: pointer;">
             <div class="icon-container blue">
                 <div class="icon blue">🇺🇸</div>
@@ -222,9 +225,6 @@
             Other
         </div>
     </div>
-    <div class="result-box">
-        <button id="patientFormButton" style="margin-top: 20px;">Access the Patient Registration Form</button>
-    </div>
 </div>
 
 <script>
@@ -240,7 +240,7 @@
     const patientFormButton = document.getElementById('patientFormButton');
 
     patientFormButton.addEventListener('click', () => {
-        window.open('https://example.com', '_blank');
+        window.open('https://ckeilberg57.github.io/patientRegForm', '_blank');
     });
 
     // Function to generate a random 32-character alphanumeric string
